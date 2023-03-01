@@ -1,0 +1,30 @@
+﻿
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Popis zaposlenih</h2>
+            <hr>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Radnik ID</th>
+                        <th>Ime i prezime</th>
+                        <th>Pozicija</th>
+                        <th>Plata</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var zaposlenik in Model)
+                    {
+                        <tr>
+                            <td>@zaposlenik.RadniciId</td>
+                            <td>@zaposlenik.Ime @zaposlenik.Prezime</td>
+                            <td>@zaposlenik.Pozicija.Naziv</td>
+                            <td><a href="@Url.Action("IstorijaPromjenePlate", new { id = zaposlenik.RadniciId })" class="btn btn-primary">Istorija promjene plate</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

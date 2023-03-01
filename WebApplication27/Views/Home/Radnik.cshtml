@@ -1,0 +1,78 @@
+﻿@model List<ZaposViewModel>
+
+<a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Create">Dodaj zaposlenog</a>
+
+<div class="container mt-4 table-responsive">
+    <table class="table table-striped table-bordered rounded shadow hoverable">
+        <thead class="bg-primary text-light">
+            <tr>
+                <th>ID</th>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Pozicija</th>
+                <th>Datum zaposlenja</th>
+                <th>Period na poziciji</th>
+                <th>Nadređeni</th>
+                <th>Bonusi</th>
+                <th>Odbici</th>
+                <th>Odmor</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var zaposViewModel in Model)
+            {
+                <tr class="fade-in">
+                    <td>@zaposViewModel.RadniciId</td>
+                    <td>@zaposViewModel.Ime</td>
+                    <td>@zaposViewModel.Prezime</td>
+                    <td>
+                        @zaposViewModel.Pozicija.Naziv
+                    </td>
+                    <td>@zaposViewModel.DatumZaposlenja.ToString("dd/MM/yyyy")</td>
+                    <td>@zaposViewModel.PeriodPozicija.ToString("dd/MM/yyyy")</td>
+                    <td>@zaposViewModel.Nadredjeni</td>
+
+
+                    <td>
+                        <ul>
+                            @if (zaposViewModel.Bonusi.Any())
+                            {
+                                foreach (var bonus in zaposViewModel.Bonusi)
+                                {
+                                    <li>@bonus.Naziv - @bonus.Iznos</li>
+                                }
+                            }
+                            else
+                            {
+                                <li class="text-muted">Nema bonusa :(</li>
+                            }
+
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            @foreach (var odbici in zaposViewModel.Odbici)
+                            {
+                                <li>@odbici.Naziv - @odbici.Iznos</li>
+                            }
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            @foreach (var odmor in zaposViewModel.Odmor)
+                            {
+                                <li>@odmor.Naziv - @odmor.Dana</li>
+                            }
+                        </ul>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+
+@section Scripts {
+
+}
+

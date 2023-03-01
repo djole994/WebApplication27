@@ -1,0 +1,35 @@
+﻿@model List<Plata>
+
+@{
+    ViewData["Title"] = "Istorija promjene plate";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Istorija promjene plate za @ViewBag.ImePrezime</h2>
+            <hr>
+            <h4>Trenutna plata: @ViewBag.TrenutnaPlata</h4>
+            <br />
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col">Datum promjene</th>
+                        <th scope="col">Iznos</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var plata in Model)
+                    {
+                        <tr>
+                            <td>@plata.DatumPromjene</td>
+                            <td>@plata.Iznos</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            <br />
+            <a href="@Url.Action("Index")" class="btn btn-primary">Nazad na početnu stranicu</a>
+        </div>
+    </div>
+</div> 
